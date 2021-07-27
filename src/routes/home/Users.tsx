@@ -1,17 +1,9 @@
-import { List, makeStyles } from "@material-ui/core";
+import { List } from "@material-ui/core";
 import User from "./User";
 
-const useStyles = makeStyles({
-    root: {
-        marginLeft: 10,
-    },
-});
-
 function Users() {
-    const classes = useStyles();
-
     return (
-        <List className={classes.root}>
+        <List>
             <User name="User 1" />
             <User name="User 2" selected />
             <User name="User 3" />
