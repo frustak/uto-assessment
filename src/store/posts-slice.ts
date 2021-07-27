@@ -23,7 +23,7 @@ export const postsSlice = createSlice({
 
 export const { setPosts } = postsSlice.actions;
 
-const fetchPosts = () => async (dispatch: AppDispatch) => {
+export const fetchPosts = () => async (dispatch: AppDispatch) => {
     const posts = await api.getPosts();
     dispatch(setPosts(posts));
 };
