@@ -33,7 +33,7 @@ function PostEdit() {
                     helperText="This field is required"
                     multiline
                     label="Content"
-                    rows={2}
+                    minRows={2}
                     maxRows={20}
                 />
             </form>
