@@ -1,10 +1,10 @@
 import { Grid } from "@material-ui/core";
-import { useFetchPosts } from "../../store/hooks";
+import { useFetchUsers } from "../../store/hooks";
 import UserPosts from "./UserPosts";
 import UserList from "./UserList";
 
 function Home() {
-    useFetchPosts();
+    useFetchUsers();
 
     return (
         <Grid container spacing={3}>
