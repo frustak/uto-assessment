@@ -1,5 +1,5 @@
 function Edit() {
-    return <></>;
+    return <>Edit Route</>;
 }
 
 export default Edit;
