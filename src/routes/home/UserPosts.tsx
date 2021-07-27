@@ -1,4 +1,5 @@
-import { Box, ListItemText, makeStyles, Paper } from "@material-ui/core";
+import { Box, makeStyles, Paper } from "@material-ui/core";
+import UserPost from "./UserPost";
 
 const useStyles = makeStyles({
     root: {
@@ -11,10 +12,6 @@ const useStyles = makeStyles({
         fontSize: "x-large",
         fontWeight: 100,
         marginBottom: 20,
-    },
-    item: {
-        padding: "10px 20px",
-        margin: 10,
     },
 });
 
@@ -29,21 +26,11 @@ function UserPosts({ name }: UserPostsProps) {
         <Paper className={classes.root} elevation={2}>
             <Box className={classes.title}>{name} Posts</Box>
 
-            <Paper className={classes.item} elevation={2}>
-                <ListItemText>POST 1</ListItemText>
-            </Paper>
-            <Paper className={classes.item} elevation={2}>
-                <ListItemText>POST 1</ListItemText>
-            </Paper>
-            <Paper className={classes.item} elevation={2}>
-                <ListItemText>POST 1</ListItemText>
-            </Paper>
-            <Paper className={classes.item} elevation={2}>
-                <ListItemText>POST 1</ListItemText>
-            </Paper>
-            <Paper className={classes.item} elevation={2}>
-                <ListItemText>POST 1</ListItemText>
-            </Paper>
+            <UserPost title="POST 1" />
+            <UserPost title="POST 2" />
+            <UserPost title="POST 3" />
+            <UserPost title="POST 4" />
+            <UserPost title="POST 5" />
         </Paper>
     );
 }
