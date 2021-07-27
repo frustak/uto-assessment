@@ -1,5 +1,5 @@
 import { AppBar, Grid, makeStyles } from "@material-ui/core";
-import UserDetail from "./UserDetail";
+import UserPosts from "./UserPosts";
 import Users from "./Users";
 
 const useStyles = makeStyles({
@@ -23,7 +23,7 @@ function Home() {
                     <Users />
                 </Grid>
                 <Grid item xs={8}>
-                    <UserDetail />
+                    <UserPosts name="User 2" />
                 </Grid>
             </Grid>
         </>
