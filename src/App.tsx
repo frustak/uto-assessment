@@ -1,7 +1,7 @@
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import PostEdit from "./routes/PostEdit";
-import Home from "./routes/Home";
+import Home from "./routes/home";
+import PostEdit from "./routes/post-edit";
 
 function App() {
     return (
@@ -10,11 +10,11 @@ function App() {
 
             <Router>
                 <Switch>
-                    <Route path="/post-edit">
-                        <PostEdit />
-                    </Route>
-                    <Route path="/">
+                    <Route exact path="/">
                         <Home />
+                    </Route>
+                    <Route exact path="/post-edit">
+                        <PostEdit />
                     </Route>
                 </Switch>
             </Router>
