@@ -1,10 +1,12 @@
 import { Button, ListItemText, makeStyles, Paper } from "@material-ui/core";
+import { User } from "../../api/schemas";
 
 const useStyles = makeStyles({
     button: {
         display: "block",
         width: "100%",
         padding: 0,
+        textTransform: "none",
     },
     item: {
         padding: "10px 20px",
@@ -16,20 +18,21 @@ const useStyles = makeStyles({
     },
 });
 
-type UserProps = {
-    name: string;
+type UserItemProps = {
+    user: User;
+    onClick: () => void;
     selected?: boolean;
 };
 
-function UserItem({ name, selected = false }: UserProps) {
+function UserItem({ user, onClick, selected = false }: UserItemProps) {
     const classes = useStyles();
     const classNames = `${classes.item} ${selected ? classes.selected : ""}`;
     const elevation = selected ? 4 : 2;
 
     return (
-        <Button className={classes.button}>
+        <Button className={classes.button} onClick={onClick}>
             <Paper className={classNames} elevation={elevation}>
-                <ListItemText>{name}</ListItemText>
+                <ListItemText>{user.name}</ListItemText>
             </Paper>
         </Button>
     );

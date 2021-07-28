@@ -1,4 +1,5 @@
 import { Box, makeStyles, Paper } from "@material-ui/core";
+import { useGetPosts, useGetUser } from "../../store/hooks";
 import UserPost from "./UserPost";
 
 const useStyles = makeStyles({
@@ -15,22 +16,21 @@ const useStyles = makeStyles({
     },
 });
 
-type UserPostsProps = {
-    name: string;
-};
-
-function UserPosts({ name }: UserPostsProps) {
+function UserPosts() {
+    const posts = useGetPosts();
+    const user = useGetUser();
     const classes = useStyles();
+
+    const renderPosts = () =>
+        posts.map((post) => <UserPost key={post.id} title={post.title} />);
+
+    if (!user) return null;
 
     return (
         <Paper className={classes.root} elevation={2}>
-            <Box className={classes.title}>{name} Posts</Box>
+            <Box className={classes.title}>{user.name} Posts</Box>
 
-            <UserPost title="POST 1" />
-            <UserPost title="POST 2" />
-            <UserPost title="POST 3" />
-            <UserPost title="POST 4" />
-            <UserPost title="POST 5" />
+            {renderPosts()}
         </Paper>
     );
 }

@@ -1,14 +1,22 @@
 import { List } from "@material-ui/core";
+import { useFetchPosts, useGetUsers } from "../../store/hooks";
 import UserItem from "./UserItem";
 
 function UserList() {
-    return (
-        <List>
-            <UserItem name="User 1" />
-            <UserItem name="User 2" selected />
-            <UserItem name="User 3" />
-        </List>
-    );
+    const users = useGetUsers();
+    const { selectedUser, setSelectedUser } = useFetchPosts();
+
+    const renderUsers = () =>
+        users.map((user) => (
+            <UserItem
+                key={user.id}
+                user={user}
+                onClick={() => setSelectedUser(user)}
+                selected={selectedUser?.id === user.id}
+            />
+        ));
+
+    return <List>{renderUsers()}</List>;
 }
 
 export default UserList;

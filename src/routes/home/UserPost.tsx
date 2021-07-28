@@ -6,6 +6,7 @@ const useStyles = makeStyles({
         width: "100%",
         padding: 0,
         textAlign: "start",
+        textTransform: "none",
     },
     item: {
         padding: "10px 20px",

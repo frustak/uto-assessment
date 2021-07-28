@@ -1,5 +1,5 @@
 import axios from "axios";
-import { User } from "./schemas";
+import { Post, User } from "./schemas";
 
 const instance = axios.create({
     baseURL: process.env.REACT_APP_SERVER_ADDRESS,
@@ -7,5 +7,10 @@ const instance = axios.create({
 
 export async function getUsers(): Promise<User[]> {
     const response = await instance.get("/users");
+    return response.data;
+}
+
+export async function getPosts(userId: number): Promise<Post[]> {
+    const response = await instance.get(`/users/${userId}/posts`);
     return response.data;
 }
