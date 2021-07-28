@@ -1,4 +1,5 @@
 import { AppBar, Box, Container, makeStyles } from "@material-ui/core";
+import SuccessDialog from "./SuccessDialog";
 
 const useStyles = makeStyles({
     appBar: {
@@ -20,6 +21,7 @@ function Layout({ children }: LayoutProps) {
         <Container>
             <AppBar className={classes.appBar} />
             <Box className={classes.content}>{children}</Box>
+            <SuccessDialog />
         </Container>
     );
 }

@@ -22,7 +22,7 @@ function UserPosts() {
     const classes = useStyles();
 
     const renderPosts = () =>
-        posts.map((post) => <UserPost key={post.id} title={post.title} />);
+        posts.map((post) => <UserPost key={post.id} post={post} />);
 
     if (!user) return null;
 

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { User } from "../api/schemas";
+import { useHistory } from "react-router-dom";
+import { Post, User } from "../api/schemas";
+import { closeDialog, openDialog } from "./dialog-slice";
 import type { RootState, AppDispatch } from "./index";
 import { fetchPosts, setUser } from "./posts-slice";
 import { fetchUsers } from "./users-slice";
+import * as api from "../api";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
@@ -42,4 +45,34 @@ export const useGetPosts = () => {
 export const useGetUser = () => {
     const user = useAppSelector((state) => state.posts.user);
     return user;
+};
+
+export const useDialog = () => {
+    const dispatch = useAppDispatch();
+    const isOpen = useAppSelector((state) => state.dialog.isOpen);
+    const open = () => dispatch(openDialog());
+    const close = () => dispatch(closeDialog());
+
+    return { isOpen, open, close };
+};
+
+export const useEditPost = () => {
+    const history = useHistory();
+    const dialog = useDialog();
+
+    const cancel = () => {
+        history.goBack();
+    };
+
+    const save = async (post: Post) => {
+        try {
+            await api.updatePost(post);
+            dialog.open();
+            history.goBack();
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
+    return { cancel, save };
 };

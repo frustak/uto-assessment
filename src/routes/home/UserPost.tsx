@@ -1,4 +1,6 @@
 import { Button, ListItemText, makeStyles, Paper } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { Post } from "../../api/schemas";
 
 const useStyles = makeStyles({
     button: {
@@ -15,16 +17,24 @@ const useStyles = makeStyles({
 });
 
 type UserPostProps = {
-    title: string;
+    post: Post;
 };
 
-function UserPost({ title }: UserPostProps) {
+function UserPost({ post }: UserPostProps) {
+    const history = useHistory();
     const classes = useStyles();
 
+    const navigateToPostEdit = () => {
+        history.push({
+            pathname: "/post-edit",
+            state: { post },
+        });
+    };
+
     return (
-        <Button className={classes.button}>
+        <Button className={classes.button} onClick={navigateToPostEdit}>
             <Paper className={classes.item} elevation={2}>
-                <ListItemText>{title}</ListItemText>
+                <ListItemText>{post.title}</ListItemText>
             </Paper>
         </Button>
     );

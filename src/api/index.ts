@@ -14,3 +14,8 @@ export async function getPosts(userId: number): Promise<Post[]> {
     const response = await instance.get(`/users/${userId}/posts`);
     return response.data;
 }
+
+export async function updatePost(post: Post): Promise<Post[]> {
+    const response = await instance.put(`/posts/${post.id}`, post);
+    return response.data;
+}
